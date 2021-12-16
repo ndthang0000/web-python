@@ -13,7 +13,7 @@ word_to_type={
     "JJ":4,
     "PP":5,
     "D":6,
-    "Ad":7,
+    "AD":7,
     "IN":8,
     "CC":9,
     "UH":10,
@@ -50,22 +50,22 @@ for i in data_train:
 
 def count_occurence(word):
     if word=='':
-        return 0,0
+        return 0,0,''
     try:
-        word=ViTokenizer.tokenize(word)
+        word=ViTokenizer.tokenize(word).strip()
         print(word)
         if len(word.split())>1:
-            return -1,-1
-        return word_to_occurence[word], round(word_to_occurence[word]/len(data_train)*100,3)
+            return -1,-1,''
+        return word_to_occurence[word], round(word_to_occurence[word]/len(data_train)*100,3), word
     except:
-        return 0, 0
+        return 0, 0,''
 def co_occurence(word):
     if word=='':
         return [],[]
     try:
         word_occurence=[]
         arr_type = np.array([0,0,0,0,0,0,0,0,0,0,0,0,0,0], dtype=int)
-        word = ViTokenizer.tokenize(word)
+        word = ViTokenizer.tokenize(word).strip()
         if len(word.split()) > 1:
             return [],[]
         for i in Matrix:
@@ -73,7 +73,7 @@ def co_occurence(word):
                 index_line=Matrix.index(i)  #index line
                 index_word=i.index(word_to_index[word]) #index word
                 word_occurence.append(data_train[index_line])
-                word_type=label_train[index_line].split(' ')[index_word]
+                print(index_line)
                 try :
                     arr_type[word_to_type[label_train[index_line].split()[index_word]]]+=1
                 except:
