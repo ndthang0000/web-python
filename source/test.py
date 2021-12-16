@@ -1,10 +1,26 @@
 from pyvi import ViTokenizer
-
+import numpy as np
 with open('source/data.txt','r',encoding='utf-8') as f:
     data_train=f.readlines()
 with open('source/label.txt','r',encoding='utf-8') as f:
     label_train=f.readlines()
 
+word_to_type={
+    "NN":0,
+    "NC":1,
+    "NP":2,
+    "VP":3,
+    "JJ":4,
+    "PP":5,
+    "D":6,
+    "Ad":7,
+    "IN":8,
+    "CC":9,
+    "UH":10,
+    "RB":11,
+    "X":12,
+    "Symbol":13
+}
 V=[]
 Matrix=[]
 for i in data_train:
@@ -45,24 +61,28 @@ def count_occurence(word):
         return 0, 0
 def co_occurence(word):
     if word=='':
-        return []
+        return [],[]
     try:
-        matrix_occurence=[]
         word_occurence=[]
+        arr_type = np.array([0,0,0,0,0,0,0,0,0,0,0,0,0,0], dtype=int)
         word = ViTokenizer.tokenize(word)
         if len(word.split()) > 1:
-            return []
+            return [],[]
         for i in Matrix:
             if word_to_index[word] in i:
-                index=Matrix.index(i)
-                word_occurence.append(data_train[index])
-                for j in i:
-                    if j==word:
-                        continue
-                    matrix_occurence.append(j)
+                index_line=Matrix.index(i)  #index line
+                index_word=i.index(word_to_index[word]) #index word
+                word_occurence.append(data_train[index_line])
+                word_type=label_train[index_line].split(' ')[index_word]
+                try :
+                    arr_type[word_to_type[label_train[index_line].split()[index_word]]]+=1
+                except:
+                    pass
 
 
 
-        return word_occurence
+
+
+        return word_occurence,arr_type
     except:
-        return []
+        return [],[]

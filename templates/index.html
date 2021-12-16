@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
     <link rel="icon" href="{{ url_for('static',filename='img/favicon.ico') }}" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
     <title>Document</title>
 </head>
 <body style="text-align:center">
@@ -34,6 +36,11 @@
     const word=document.querySelector('input[name="word"]').value
         console.log(window.location)
         const itemEl=document.querySelectorAll('.item')
+        let data=[]
+        itemEl.forEach(item=>{
+            data.push(item.innerText)
+        })
+        console.log(data)
         itemEl.forEach(item=>{
             let content=item.innerText
             content=content.split(' ')
@@ -42,7 +49,7 @@
             })
             let index=content.indexOf(word)
             content[index]=`<span style="color:white;background-color:#f0932b;padding:5px">${word}</span>`
-            item.innerHTML=content.join(' ')
+            item.innerHTML=`<i class="bi bi-check-lg"></i>`+content.join(' ')
         })
     })
 </script>

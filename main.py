@@ -13,9 +13,10 @@ app=Flask(__name__)
 def get_index():
     word = request.args.get('word', type=str, default='')
     data, frequency = test.count_occurence(word)
-    matrix_occurence=test.co_occurence(word)
-    print(matrix_occurence)
-    return render_template('index.html', data=data, word=word, frequency=frequency,matrix_occurence=matrix_occurence)
+    sentences_occurence, arr_type =test.co_occurence(word)
+    print(sentences_occurence)
+    print(arr_type)
+    return render_template('index.html', data=data, word=word, frequency=frequency,matrix_occurence=sentences_occurence)
 
 
 # Press the green button in the gutter to run the script.
