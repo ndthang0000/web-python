@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static',filename='img/favicon.ico') }}" type="image/x-icon" />
+    <title>Document</title>
+</head>
+<body style="text-align:center">
+    <h2 class="text-center">Welcome to my project</h2>
+    <form>
+        <input type="text" name="word" value="{{word}}">
+        {% if data==-1 %}
+        <div>{{word}} KHÔNG phải là 1 từ</div>
+        {% else %}
+        <div>Số lần xuất hiện là : {{data}}</div>
+        <div>Tần suất xuất hiện là : {{frequency}}%</div>
+        {% endif %}
+        <button>Submit</button>
+    </form>
+    <div style="text-align:start">
+        {% for i in matrix_occurence %}
+        <li class="item">{{i}}</li>
+        {% endfor %}
+    </div>
+    <table class="" style="color:white"></table>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+    const word=document.querySelector('input[name="word"]').value
+        console.log(window.location)
+        const itemEl=document.querySelectorAll('.item')
+        itemEl.forEach(item=>{
+            let content=item.innerText
+            content=content.split(' ')
+            content.forEach((item,i)=>{
+                content[i]=content[i].replace('_',' ')
+            })
+            let index=content.indexOf(word)
+            content[index]=`<span style="color:white;background-color:#f0932b;padding:5px">${word}</span>`
+            item.innerHTML=content.join(' ')
+        })
+    })
+</script>
+</html>
