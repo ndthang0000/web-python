@@ -4,7 +4,7 @@
     height: 70px;
     transform: translateX(-50%);
     left: 50%;
-    bottom: -20px;
+    bottom: -30px;
     border-radius: 12px;
     background-color: white;
     box-shadow: 0px 8px 20px rgb(0 0 0 / 15%);
@@ -42,4 +42,23 @@
     font-size: 18px;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
+}
+.link-active{
+    color: #207ce5 !important;
+}
+.line-css{
+    position: absolute;
+    width: 0px;
+    height: 2px;
+    color: #207ce5;
+}
+@media (max-witdh:700px){
+    .form-search-custom{
+        width: 500px !important;
+    }
+}
+@media (max-witdh:500px){
+    .form-search-custom{
+        width: 350px !important;
+    }
 }

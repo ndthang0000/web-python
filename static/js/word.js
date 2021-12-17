@@ -1,0 +1,15 @@
+var wordType=['Danh từ thường',
+            'Danh từ chỉ loại',
+            'Danh từ riêng',
+            'Động từ',
+            'Tính từ',
+            'Đại từ',
+            'Định từ & số từ',
+            'Phụ từ',
+            'Giới từ',
+            'Liên từ',
+            'Thán từ',
+            'Trợ từ',
+            'Không phân loại',
+            'Ký tự đặc biệt'
+]

@@ -1,5 +1,7 @@
 from pyvi import ViTokenizer
 import numpy as np
+import math
+
 with open('source/data.txt','r',encoding='utf-8') as f:
     data_train=f.readlines()
 with open('source/label.txt','r',encoding='utf-8') as f:
@@ -56,7 +58,7 @@ def count_occurence(word):
         print(word)
         if len(word.split())>1:
             return -1,-1,''
-        return word_to_occurence[word], round(word_to_occurence[word]/len(data_train)*100,3), word
+        return word_to_occurence[word], round(-math.log(word_to_occurence[word]/len(Vocab)),3), word
     except:
         return 0, 0,''
 def co_occurence(word):
