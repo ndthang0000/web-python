@@ -54,21 +54,21 @@
             <div class="col-lg-6 col-md-12" style="text-align: center;">
                 <h2 style="font-size: 40px;font-weight: 650;color: #ce4be8;text-transform: uppercase;;">{{word}}</h2>
                 {% if data==-1 %}
-                <div><strong>{{word}}</strong> KHÔNG phải là 1 từ</div>
+                <div><strong style="font-size: 24px;">{{word}}</strong> KHÔNG phải là 1 từ</div>
                 {% else %}
                 <p style="font-size: 20px; font-weight: 550;"> <i class="bi bi-check-lg" style="color: coral; font-size: 18px;"></i>Số lần xuất hiện là : n = {{data}}</p>
                 <p style="font-size: 20px; font-weight: 550;"><i class="bi bi-check-lg" style="color: coral; font-size: 18px;"></i>Tần suất xuất hiện là : f = {{frequency}}</p>
                 <p style="font-size: 20px; font-weight: 550;" class="popular">
                     <i class="bi bi-check-lg" style="color: coral; font-size: 18px;"></i>
                     Độ phổ biến : 
-                    {% if frequency < 3 %}
+                    {% if frequency == 0  %}
+                    ...
+                    {% elif frequency < 3 %}
                     <i class="bi bi-arrow-up" style="color: #ce4be8; font-size: 18px;"></i> Cao
                     {% elif frequency < 6 %}
                     <i class="bi bi-arrow-down-up"style="color: #ce4be8; font-size: 18px;"></i> Trung Bình
                     {% elif frequency >=6  %}
                     <i class="bi bi-arrow-down"style="color: #ce4be8; font-size: 18px;"></i> Thấp
-                    {% elif frequency ==0  %}
-                    ...
                     {% endif %}
                 </p>
                 {% endif %}
@@ -77,8 +77,8 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Word type</th>
-                            <th scope="col">Word</th>
+                            <th scope="col" style="color: #207ce5;font-size: 22px;">Word type</th>
+                            <th scope="col" style="color: #207ce5;font-size: 22px;">Word</th>
                         </tr>
                     </thead>
                     <tbody id="word-type">

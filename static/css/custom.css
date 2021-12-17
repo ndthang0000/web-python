@@ -52,13 +52,21 @@
     height: 2px;
     color: #207ce5;
 }
-@media (max-witdh:700px){
-    .form-search-custom{
+@media (max-width:700px){
+    .form-search-custom{ 
         width: 500px !important;
+        height: 60px;
     }
 }
-@media (max-witdh:500px){
+@media (max-width:500px){
     .form-search-custom{
         width: 350px !important;
+        height: 50px;
+    }
+}
+@media (max-width:350px){
+    .form-search-custom{
+        width: 98% !important;
+        height: 50px;
     }
 }

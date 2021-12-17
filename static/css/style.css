@@ -3588,9 +3588,6 @@ textarea.form-control-lg {
   }
 }
 @media (min-width: 768px) {
-  .form-search-custom{
-    width: 500px;
-  }
   .dropdown-menu-md-start {
     --bs-position: start;
   }
