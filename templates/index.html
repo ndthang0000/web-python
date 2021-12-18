@@ -30,7 +30,7 @@
                         <li>
                             <a href="/statistic" class="nav-link text-black" style="font-weight: 600;font-size: 20px; position: relative;">
                                 <i class="bi bi-menu-button-wide"></i>
-                                Thống kế kho ngữ liệu
+                                Thống kê kho ngữ liệu
                             </a>
                         </li>
                         
@@ -72,6 +72,19 @@
                     {% endif %}
                 </p>
                 {% endif %}
+                <h3 style="text-align: center; margin:22px; color:#207ce5">Từ đồng xuất hiện</h3>
+                <table class="table">
+                    <thead>
+                    </thead>
+                    <tbody id="txt">
+                        <tr>
+                            <td id="txt1" scope="col" style="color: #000;font-size: 15px;text-align: center;padding:10px; "></td>
+                            <td id="txt2"scope="col" style="color: #000;font-size: 15px;text-align: center;padding:10px;"></td>
+                            <td id="txt3"scope="col" style="color: #000;font-size: 15px;text-align: center;padding:10px;"></td>
+
+                        </tr>   
+                    </tbody>
+                </table>
             </div>
             <div class="col-lg-6 col-md-12">
                 <table class="table">
@@ -103,9 +116,12 @@
             
         </tbody>
     </table>
+   
     {% for i in matrix_occurence: %}
     <div class="item" style="display: none;">{{i}}</div>
     {% endfor %}
+
+    
     
 </body>
 
@@ -132,7 +148,7 @@
         itemEl.forEach(item=>{
             data.push(item.innerText)
         })
-        console.log(data)
+        
         const tableBody=document.querySelector('#table-occ')
         let htmlTable=''
         data.forEach(item=>{
@@ -211,5 +227,98 @@
         })
         console.log(window.location)
     })
+</script>
+<script>
+     document.addEventListener('DOMContentLoaded',()=>{
+        const word=document.querySelector('input[name="word-segment"]').value
+        const itemEl=document.querySelectorAll('.item')
+        let data=[]
+        itemEl.forEach(item=>{
+            data.push(item.innerText)
+        })
+        console.log(data)
+        let line=' '
+        let array= []
+        let count=[]
+        for (let i=0; i< data.length; i++){
+            line = data[i].split('\n')[0]
+            line = data[i].split(' ')
+            let index=line.indexOf(word)
+            if(line[index-1]){
+                array.push(line[index-1]+' '+ word)
+            }
+            if(line[index+1]!='\n'){
+                array.push(word+' '+ line[index+1])
+            }
+        }
+        for(let j of array){
+            count[j]=(count[j]||0)+1
+        }
+
+        let sorts = [];
+        for (var co in count) {
+            sorts.push([co, count[co]]);
+        }
+
+        sorts.sort(function(a, b) {
+            return b[1] - a[1];
+        });
+        let linee=''
+        let output=[]
+        if(sorts.length<27)
+        {
+            for(let i=0; i<sorts.length; i++){
+            console.log(sorts[i])
+            linee=sorts[i][0].replaceAll('_',' ')
+            
+            output.push(linee)
+            }
+        }
+        else
+        {
+            for(let i=0; i<27; i++){
+            console.log(sorts[i])
+            linee=sorts[i][0].replaceAll('_',' ')
+            
+            output.push(linee) 
+            }
+        }
+        let num =output.length
+        let num2=Math.round((output.length/3))
+        let num3=Math.round((output.length/3))*2
+        console.log(num)
+        console.log(num2)
+        console.log(num3)
+        let cl1=[], cl2=[], cl3=[]
+        for(let i=0; i<num2; i++)
+        {
+            cl1.push(output[i])
+        }
+        for(let i=num2; i<num3; i++)
+        {
+            cl2.push(output[i])
+        }
+        for(let i=num3; i<num; i++)
+        {
+            cl3.push(output[i])
+        }
+        const outputHTML1=document.querySelector("#txt1")
+        const outputHTML2=document.querySelector("#txt2")
+        const outputHTML3=document.querySelector("#txt3")
+        for(var i=0; i < cl1.length; i++)
+        {
+            outputHTML1.innerHTML += "<p>"+cl1[i]+"</p>";
+        }
+        for(var i=0; i < cl2.length; i++)
+        {
+            outputHTML2.innerHTML += "<p>"+cl2[i]+"</p>";
+        }
+        for(var i=0; i < cl3.length; i++)
+        {
+            outputHTML3.innerHTML += "<p>"+cl3[i]+"</p>";
+        }
+    })
+
+
 </script>
 </html>
