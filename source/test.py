@@ -7,6 +7,8 @@ with open('source/data.txt','r',encoding='utf-8') as f:
 with open('source/label.txt','r',encoding='utf-8') as f:
     label_train=f.readlines()
 
+print('Đang Khởi tạo server, vui lòng đợi .... ')
+
 word_to_type={
     "NN":0,
     "NC":1,
@@ -75,16 +77,10 @@ def co_occurence(word):
                 index_line=Matrix.index(i)  #index line
                 index_word=i.index(word_to_index[word]) #index word
                 word_occurence.append(data_train[index_line])
-                print(index_line)
                 try :
                     arr_type[word_to_type[label_train[index_line].split()[index_word]]]+=1
                 except:
                     pass
-
-
-
-
-
         return word_occurence,arr_type
     except:
         return [],[]
