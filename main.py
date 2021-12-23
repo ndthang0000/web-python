@@ -16,9 +16,9 @@ def get_index():
     sentences_occurence, arr_type =test.co_occurence(word)
     return render_template('index.html', data=data, word=word,word_segment=word_segment, frequency=frequency,matrix_occurence=sentences_occurence,arr_type=arr_type )
 
-@app.route('/statistic',methods=["GET"])
-def statistic():
-    return render_template('statistic.html')
+# @app.route('/statistic',methods=["GET"])
+# def statistic():
+#     return render_template('statistic.html')
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
