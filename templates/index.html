@@ -27,12 +27,12 @@
                                 Web tra cứu từ
                             </a>
                         </li>
-                        <!-- <li>
+                        <li>
                             <a href="/statistic" class="nav-link text-black" style="font-weight: 600;font-size: 20px; position: relative;">
                                 <i class="bi bi-menu-button-wide"></i>
                                 Thống kê kho ngữ liệu
                             </a>
-                        </li> -->
+                        </li>
                         
                     </ul>
                 </div>
@@ -145,6 +145,12 @@
     document.addEventListener('DOMContentLoaded',()=>{
         const word=document.querySelector('input[name="word-segment"]').value
         const itemEl=document.querySelectorAll('.item')
+        const inputFocus=document.querySelector('input[name="word"]')
+
+        if(inputFocus){
+            inputFocus.focus()
+        }
+        
         let data=[]
         itemEl.forEach(item=>{
             data.push(item.innerText)
@@ -218,7 +224,7 @@
             
         })
         function highlight(a){
-            if(a>50){
+            if(a>30){
                 return `<span style="font-weight:700">${a} %</span>`
             }
             return `${a} %`

@@ -1,3 +1,4 @@
+from flask.templating import render_template
 from pyvi import ViTokenizer
 import numpy as np
 import math
@@ -56,7 +57,7 @@ def count_occurence(word):
     if word=='':
         return 0,0,''
     try:
-        word=ViTokenizer.tokenize(word).strip()
+        word=ViTokenizer.tokenize(word).strip().lower()
         print(word)
         if len(word.split())>1:
             return -1,-1,''
@@ -69,7 +70,7 @@ def co_occurence(word):
     try:
         word_occurence=[]
         arr_type = np.array([0,0,0,0,0,0,0,0,0,0,0,0,0,0], dtype=int)
-        word = ViTokenizer.tokenize(word).strip()
+        word = ViTokenizer.tokenize(word).strip().lower()
         if len(word.split()) > 1:
             return [],[]
         for i in Matrix:
@@ -84,3 +85,8 @@ def co_occurence(word):
         return word_occurence,arr_type
     except:
         return [],[]
+def statistic():
+    quantity_word=len(Vocab)
+    quantity_sentence=len(data_train)
+    items_sorted = sorted(word_to_occurence.items(), key = lambda x : x[1],reverse=True)
+    return quantity_word, quantity_sentence, items_sorted[:15]
