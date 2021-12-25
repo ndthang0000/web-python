@@ -102,8 +102,10 @@
             </div>
         </div>
     </div>
+
     <input type="hidden" name="word-type-meta" value="{{arr_type}}">
     <input type="hidden" name="word-segment" value="{{word_segment}}">
+
     <h3 style="text-align: center;">Câu xuất hiện</h3>
     <table class="table table-success table-striped" style="padding: 40px;">
         <thead>
@@ -189,15 +191,13 @@
         let data_type=[]
         data_type_string=data_type_string.split(']')[0]
         data_type_string=data_type_string.split('[')[1]
-        console.log(data_type_string)
         data_type_string=data_type_string.split(' ')
-        console.log(data_type_string)
+
         for(let i =0;i<data_type_string.length;i++){
             if(data_type_string[i]==='' ||data_type_string[i]==='['){
                 continue
             }
             data_type.push( parseInt(data_type_string[i]))
-            console.log(typeof data_type_string[i])
         }
         let sumType=0
         data_type.forEach(item=>{
@@ -213,7 +213,6 @@
             }
         })
         sortType.sort(function(a, b){return b.quantity - a.quantity});
-        console.log(sortType)
         let htmlWordType=''
         sortType.forEach(item=>{
             htmlWordType+=`
@@ -242,7 +241,6 @@
                 item.classList.add('link-active')
             }
         })
-        console.log(window.location)
     })
 </script>
 <script>
@@ -253,7 +251,6 @@
         itemEl.forEach(item=>{
             data.push(item.innerText)
         })
-        console.log(word)
         let line=' '
         let array= []
         let count=[]
@@ -285,20 +282,16 @@
         if(sorts.length<24)
         {
             for(let i=0; i<sorts.length; i++){
-            console.log(sorts[i])
             linee=sorts[i][0].replace(word,`<span style="color:#207ce5;font-weight:600">${word}</span>`)
             linee=sorts[i][0].replaceAll('_',' ')  
-            console.log(linee)        
             output.push(linee)
             }
         }
         else
         {
             for(let i=0; i<24; i++){
-            console.log(sorts[i])
             linee=sorts[i][0].replace(word,`<span style="color:#207ce5;font-weight:600">${word}</span>`)
             linee=sorts[i][0].replaceAll('_',' ')
-            console.log(linee)    
             output.push(linee) 
             }
         }

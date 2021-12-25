@@ -1,4 +1,4 @@
-from flask.templating import render_template
+
 from pyvi import ViTokenizer
 import numpy as np
 import math
@@ -58,7 +58,6 @@ def count_occurence(word):
         return 0,0,''
     try:
         word=ViTokenizer.tokenize(word).strip().lower()
-        print(word)
         if len(word.split())>1:
             return -1,-1,''
         return word_to_occurence[word], round(-math.log(word_to_occurence[word]/len(Vocab)),3), word

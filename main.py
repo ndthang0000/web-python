@@ -19,8 +19,6 @@ def get_index():
 @app.route('/statistic',methods=["GET"])
 def statistic():
     quantity_word, quantity_sentence, top_word = data.statistic()
-    print(top_word)
-    print(top_word[0][0])
     return render_template('statistic.html',quantity_word=quantity_word,quantity_sentence=quantity_sentence,top_word=top_word)
 
 # Press the green button in the gutter to run the script.
