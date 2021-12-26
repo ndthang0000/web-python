@@ -33,18 +33,11 @@ for i in data_train:
         V.append(j)
 Vocab = list(set(V))
 
-def count(word,V):
-    result=0
-    for i in V:
-        if i==word:
-            result+=1
-    return result 
+
 word_to_index = {w : (i+2) for i, w in enumerate(Vocab)}
 word_to_index['UNK'] = 1
 word_to_index['PAD'] = 0
 index_to_word = {i: w for w, i in word_to_index.items()}
-
-word_to_occurence={i:count(i,V) for i in Vocab}
 
 for i in data_train:
     temp=[]
@@ -52,6 +45,14 @@ for i in data_train:
         temp.append(word_to_index[j])
     Matrix.append(temp)
 
+def count(word,V):
+    result=0
+    for i in V:
+        if i==word:
+            result+=1
+    return result 
+
+word_to_occurence={i:count(i,V) for i in Vocab}
 
 def count_occurence(word):
     if word=='':

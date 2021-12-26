@@ -23,6 +23,7 @@ def statistic():
     print(top_word[0][0])
     return render_template('statistic.html',quantity_word=quantity_word,quantity_sentence=quantity_sentence,top_word=top_word)
 
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     app.run()
