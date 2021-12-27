@@ -1,2 +1,0 @@
-Tại thư mục source, mở CMD và chạy file main.py
-Đợi server khởi động tầm khoảng 60s 
